@@ -7,7 +7,7 @@
 <script type="text/javascript">
     
 
-    const URL = "https://teachablemachine.withgoogle.com/models/yemRoqmg4/";
+    const URL = "https://teachablemachine.withgoogle.com/models/p8GQJbC10/";
     let model, webcam, ctx, labelContainer, maxPredictions;
 
     async function init() {
@@ -18,7 +18,7 @@
         model = await tmPose.load(modelURL, metadataURL);
         maxPredictions = model.getTotalClasses();
 
-        // setup a webcam
+        //setup webcam
         const size = 200;
         const flip = true; 
         webcam = new tmPose.Webcam(size, size, flip); 
@@ -26,7 +26,7 @@
         await webcam.play();
         window.requestAnimationFrame(loop);
 
-        // get elements to the DOM
+        // append/get elements to the DOM
         const canvas = document.getElementById("canvas");
         canvas.width = size; canvas.height = size;
         ctx = canvas.getContext("2d");
@@ -43,9 +43,8 @@
     }
 
     async function predict() {
-        // Prediction #1: run input through posenet
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
-        // Prediction 2: run input through teachable machine classification model
+        // run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
 
         for (let i = 0; i < maxPredictions; i++) {
