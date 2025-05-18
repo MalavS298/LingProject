@@ -3,7 +3,6 @@ def main():
 
     from googletrans import Translator
     import os
-    import sys
     
     function=input("""Which one do you want to perform:
     a. French to English
